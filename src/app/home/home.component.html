@@ -1,0 +1,27 @@
+<div class="matcard">
+<mat-card>
+      <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Country Code</mat-label>
+        <input matInput [(ngModel)]="countryCode" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+      <button class="bttn" mat-raised-button color="primary" (click)="onSearchClick()">Search</button>
+    </form>
+</mat-card>
+</div>
+
+ <div style="height: 450px; overflow: auto;">
+  
+    <mat-table [dataSource]="Source" class="mat-elevation-z8">
+    <ng-container *ngFor="let column of displayedColumns"
+                  [matColumnDef]="column">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ column | titlecase }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let item">
+        {{ item[column] }}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</div> 
