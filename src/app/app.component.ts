@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent  {
   ngOnInit(): void {}
-  title = 'covid';
+  title = 'covid-2019';
 }
