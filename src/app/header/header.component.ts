@@ -17,4 +17,7 @@ export class HeaderComponent implements OnInit {
   onHomeClick() {
     this.router.navigate(['home'], {});
   }
+  onNewsClick(){
+    this.router.navigate(['news'], {});
+  }
 }
