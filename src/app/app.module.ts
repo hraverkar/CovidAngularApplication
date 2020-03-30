@@ -26,12 +26,14 @@ import {
 } from "@angular/material/snack-bar";
 import { GlobalComponent } from './global/global.component';
 import { HeaderComponent } from './header/header.component';
+import { NewsComponent } from './news/news.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     GlobalComponent,
-    HeaderComponent
+    HeaderComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,
