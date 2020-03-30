@@ -12,31 +12,83 @@ import { HttpResponse } from '@angular/common/http';
 export class HomeComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
   public products: any[] = [];
+  public countryDatas:any[]=[];
   public data: any[] = [];
-  public countryCode:string;
-  public Source:any;
+  public countryCode: string;
+  public Source: any;
+  public testBool = false;
+  public countryName: any;
+  public displayedColumns: any;
 
-  displayedColumns: string[] = ['new_daily_cases', 'new_daily_deaths', 'total_cases', 'total_recoveries', 'total_deaths'];
-  constructor(private dataService:DataService) { }
+  public totalCase: string;
+  public totalRecover: string;
+  public totalUnResolve: string;
+  public totalDeath: string;
+  public newCaseToday: string;
+  public newDeath: string;
+  public totalActive: string;
+  public totalSerious: string;
 
-  ngOnInit(): void {
-  }
+  constructor(private dataService: DataService) {}
 
-  onSearchClick(){
+  ngOnInit(): void {}
+
+  onSearchClick() {
     this.dataService
-    .sendGetRequest(this.countryCode)
-    .pipe(takeUntil(this.destroy$))
-    .subscribe((res: HttpResponse<any>) => {
-      console.table(res);
-      this.products = res.body;
-      console.log(this.products);
-      this.generatedTable(this.products);
-    }); 
+      .getCountryTimeLineRequest(this.countryCode.toUpperCase())
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res: HttpResponse<any>) => {
+        console.table(res);
+        this.products = res.body;
+        console.log(this.products);
+        this.countryData();
+        this.generateTimeLineTable(this.products);     
+      });
   }
 
-  generatedTable(products:any){
-    let t = JSON.stringify(this.products["timelineitems"]);
-    console.log(t);
-      }
-  
+  countryData(){
+    this.dataService
+      .getCountryTotal(this.countryCode.toUpperCase())
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res: HttpResponse<any>) => {
+        console.table(res);
+        this.countryDatas = res.body;
+        this.generateCountryDataTable(this.countryDatas);
+      });
+  }
+
+  generateCountryDataTable(singleData: any) {
+    this.totalCase = singleData.countrydata[0].total_cases;
+    this.totalRecover = singleData.countrydata[0].total_recovered;
+    this.totalUnResolve = singleData.countrydata[0].total_unresolved;
+    this.totalDeath = singleData.countrydata[0].total_deaths;
+    this.newCaseToday = singleData.countrydata[0].total_new_cases_today;
+    this.newDeath = singleData.countrydata[0].total_new_deaths_today;
+    this.totalActive = singleData.countrydata[0].total_active_cases;
+    this.totalSerious = singleData.countrydata[0].total_serious_cases;
+  }
+
+  onCancelClick() {
+    this.data = [];
+    this.countryCode = null;
+    this.testBool = false;
+  }
+
+  generateTimeLineTable(products: any) {
+    this.countryName = products.countrytimelinedata[0].info.title;
+    this.testBool = true;
+    let finalArray: any[] = [];
+    for (let i = 0; i < this.products['timelineitems'].length; i++) {
+      let data: any = this.products['timelineitems'][i];
+      Object.keys(data).forEach((key: any) => {
+        let obj = {
+          date: key,
+          ...data[key]
+        };
+        finalArray.push(obj);
+      });
+    }
+    this.displayedColumns = Object.keys(finalArray[0]);
+    this.Source = finalArray;
+  }
 }

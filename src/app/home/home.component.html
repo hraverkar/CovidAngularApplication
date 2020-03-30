@@ -1,27 +1,56 @@
+<div class="header">
+  <app-header></app-header>
+</div>
 <div class="matcard">
-<mat-card>
-      <form class="example-form">
+  <mat-card>
+    <form class="example-form">
       <mat-form-field class="example-full-width">
         <mat-label>Country Code</mat-label>
         <input matInput [(ngModel)]="countryCode" [ngModelOptions]="{standalone: true}">
       </mat-form-field>
       <button class="bttn" mat-raised-button color="primary" (click)="onSearchClick()">Search</button>
+      <button class="bttn" mat-raised-button color="primary" style="margin-left: 20px;"
+        (click)="onCancelClick()">Cencel</button>
     </form>
-</mat-card>
+  </mat-card>
+</div>
+<br>
+
+<div *ngIf="testBool" class="matcard1">
+  <mat-card>
+    <h3 style="font-weight: bold; margin-left:50px">{{countryName}} COVID-2019 Data </h3>
+    Total Case : {{ totalCase }}
+    <p></p>
+    Total Recovery : {{ totalRecover }}
+    <p></p>
+    Total UnResolve : {{ totalUnResolve }}
+    <p></p>
+    Total Death : {{ totalDeath }}
+    <p></p>
+    Total New Case Today : {{ newCaseToday }}
+    <p></p>
+    Toal New Death : {{ newDeath }}
+    <p></p>
+    Total Active : {{ totalActive }}
+    <p></p>
+    Total Serious : {{ totalSerious }}
+    <p></p>
+  </mat-card>
 </div>
 
- <div style="height: 450px; overflow: auto;">
-  
+<mat-card class="table" *ngIf="testBool">
+  <h3 style="margin-left: 35%;">Time Line : {{countryName}}</h3>
+  <div style="width:800px; height: 450px; overflow: auto;">
     <mat-table [dataSource]="Source" class="mat-elevation-z8">
-    <ng-container *ngFor="let column of displayedColumns"
-                  [matColumnDef]="column">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ column | titlecase }}
-      </mat-header-cell>
-      <mat-cell *matCellDef="let item">
-        {{ item[column] }}</mat-cell>
-    </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-  </mat-table>
-</div> 
+      <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ column | titlecase }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          {{ item[column] }}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </div>
+</mat-card>
