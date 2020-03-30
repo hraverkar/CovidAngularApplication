@@ -1,0 +1,26 @@
+.matcard {
+  padding-right: 30px;
+  width: 867.8px;
+
+  border-top-width: 0px;
+  border-top-style: solid;
+  border-right-width: 0px;
+  border-right-style: solid;
+  border-bottom-width: 0px;
+  border-bottom-style: solid;
+  padding-left: 30px;
+  padding-bottom: 30px;
+  margin-left: 35%;
+  width: 420px;
+  height: 100px;
+}
+
+.table{
+  margin-left: 20%;
+  margin-right: 25%;
+  padding-right: 16px;
+  border-right-width: 0px;
+  border-right-style: solid;
+  margin-bottom: 0px;
+  margin-top: 10%;
+  }
