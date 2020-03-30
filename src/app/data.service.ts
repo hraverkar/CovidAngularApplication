@@ -4,7 +4,7 @@ import {
   HttpErrorResponse,
   HttpParams
 } from "@angular/common/http";
-
+import { throwError } from "rxjs";
 import { catchError, retry, tap } from "rxjs/operators";
 
 @Injectable({
@@ -14,7 +14,7 @@ export class DataService {
   constructor(private httpClient: HttpClient) { }
   public REST_API_SERVER = 'https://thevirustracker.com/free-api?';
 
-  public sendGetRequest(query:any) {
+  public getCountryTimeLineRequest(query:any) {
     return this.httpClient
       .get<any>(this.REST_API_SERVER, {
         params: new HttpParams({ fromString: "countryTimeline="+query }),
@@ -25,16 +25,51 @@ export class DataService {
         catchError(this.handleError),
         tap(res => {
           console.log(res);
-        //  console.log(res.headers.get("Link"));
-         // this.parseLinkHeader(res.headers.get("Link"));
         })
       );
   }
   
-  handleError(handleError: any): any {
-    throw new Error("Method not implemented.");
+
+  public getCountryTotal(query:any){
+    return this.httpClient
+    .get<any>(this.REST_API_SERVER, {
+      params: new HttpParams({ fromString: "countryTotal="+query }),
+      observe: "response"
+    })
+    .pipe(
+      retry(3),
+      catchError(this.handleError),
+      tap(res => {
+        console.log(res);
+      })
+    );
   }
-  parseLinkHeader(arg0: any) {
-    throw new Error("Method not implemented.");
+
+  public getGlobalStat() {
+    return this.httpClient
+      .get<any>(this.REST_API_SERVER, {
+        params: new HttpParams({ fromString: "global=stats" }),
+        observe: "response"
+      })
+      .pipe(
+        retry(3),
+        catchError(this.handleError),
+        tap(res => {
+          console.log(res);
+        })
+      );
+  }
+  
+
+
+  handleError(error: HttpErrorResponse) {
+    let errorMessage = "Unknow error!;";
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = `Error :${error.error.message}`;
+    } else {
+      errorMessage = `Error : ${error.status} \nMessage :${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
   }
 }
