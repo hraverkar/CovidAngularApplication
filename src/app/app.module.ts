@@ -13,16 +13,25 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
 import { MatTableModule } from '@angular/material/table';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
+import {MatIconModule} from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
 
 import {
   MatSnackBarModule,
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
   MAT_SNACK_BAR_DATA
 } from "@angular/material/snack-bar";
+import { GlobalComponent } from './global/global.component';
+import { HeaderComponent } from './header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    GlobalComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +44,10 @@ import {
     MatSnackBarModule,
     MatCardModule,
     MatTableModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
