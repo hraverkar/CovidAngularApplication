@@ -1,0 +1,35 @@
+.matcard {
+  padding-right: 30px;
+  width: 867.8px;
+
+  border-right-width: 0px;
+  border-right-style: solid;
+  padding-left: 30px;
+  margin-left: 35%;
+  font-weight: bold;
+
+  align-content: center;
+  border-top-width: 0px;
+  border-top-style: solid;
+  margin-top: 55px;
+  font-size: initial;
+  padding-bottom: 16px;
+  border-bottom-width: 0px;
+  border-bottom-style: solid;
+  height: 166px;
+  width: 350px;
+}
+
+
+.bttn {
+  padding-right: 12px;
+  margin-left: 40px;
+}
+
+.table{
+  margin-left: 20%;
+margin-right: 25%;
+padding-right: 16px;
+border-right-width: 0px;
+border-right-style: solid;
+}
