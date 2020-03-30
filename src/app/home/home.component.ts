@@ -13,7 +13,6 @@ export class HomeComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
   public products: any[] = [];
   public countryDatas:any[]=[];
-  public data: any[] = [];
   public countryCode: string;
   public Source: any;
   public testBool = false;
@@ -40,7 +39,6 @@ export class HomeComponent implements OnInit {
       .subscribe((res: HttpResponse<any>) => {
         console.table(res);
         this.products = res.body;
-        console.log(this.products);
         this.countryData();
         this.generateTimeLineTable(this.products);     
       });
@@ -69,7 +67,6 @@ export class HomeComponent implements OnInit {
   }
 
   onCancelClick() {
-    this.data = [];
     this.countryCode = null;
     this.testBool = false;
   }
@@ -78,8 +75,7 @@ export class HomeComponent implements OnInit {
     this.countryName = products.countrytimelinedata[0].info.title;
     this.testBool = true;
     let finalArray: any[] = [];
-    for (let i = 0; i < this.products['timelineitems'].length; i++) {
-      let data: any = this.products['timelineitems'][i];
+      let data: any = this.products['timelineitems'][0];
       Object.keys(data).forEach((key: any) => {
         let obj = {
           date: key,
@@ -87,7 +83,6 @@ export class HomeComponent implements OnInit {
         };
         finalArray.push(obj);
       });
-    }
     this.displayedColumns = Object.keys(finalArray[0]);
     this.Source = finalArray;
   }

@@ -40,7 +40,7 @@
 
 <mat-card class="table" *ngIf="testBool">
   <h3 style="margin-left: 35%;">Time Line : {{countryName}}</h3>
-  <div style="width:800px; height: 450px; overflow: auto;">
+  <div style="width:800px; height: 300px; overflow: auto;">
     <mat-table [dataSource]="Source" class="mat-elevation-z8">
       <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
