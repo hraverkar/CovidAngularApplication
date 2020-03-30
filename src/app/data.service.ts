@@ -24,11 +24,9 @@ export class DataService {
         retry(3),
         catchError(this.handleError),
         tap(res => {
-          console.log(res);
         })
       );
   }
-  
 
   public getCountryTotal(query:any){
     return this.httpClient
@@ -40,7 +38,6 @@ export class DataService {
       retry(3),
       catchError(this.handleError),
       tap(res => {
-        console.log(res);
       })
     );
   }
@@ -55,12 +52,23 @@ export class DataService {
         retry(3),
         catchError(this.handleError),
         tap(res => {
-          console.log(res);
         })
       );
   }
-  
 
+  public getCountryNewsStat(query:any) {
+    return this.httpClient
+      .get<any>(this.REST_API_SERVER, {
+        params: new HttpParams({ fromString: "countryNewsTotal="+query }),
+        observe: "response"
+      })
+      .pipe(
+        retry(3),
+        catchError(this.handleError),
+        tap(res => {
+        })
+      );
+  }
 
   handleError(error: HttpErrorResponse) {
     let errorMessage = "Unknow error!;";
