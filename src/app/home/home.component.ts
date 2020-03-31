@@ -12,7 +12,7 @@ import { HttpResponse } from '@angular/common/http';
 export class HomeComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
   public products: any[] = [];
-  public countryDatas:any[]=[];
+  public countryDatas: any[] = [];
   public countryCode: string;
   public Source: any;
   public testBool = false;
@@ -27,26 +27,36 @@ export class HomeComponent implements OnInit {
   public newDeath: string;
   public totalActive: string;
   public totalSerious: string;
+  public countryMap = new Map<string, string>();
 
   constructor(private dataService: DataService) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.dataService
+      .getCountryDict()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res: HttpResponse<any>) => {
+        console.table(res);
+        this.countryDict(res);
+      });
+  }
 
   onSearchClick() {
+    let value = this.countryMap.get(this.countryCode.toUpperCase());
     this.dataService
-      .getCountryTimeLineRequest(this.countryCode.toUpperCase())
+      .getCountryTimeLineRequest(value)
       .pipe(takeUntil(this.destroy$))
       .subscribe((res: HttpResponse<any>) => {
         console.table(res);
         this.products = res.body;
-        this.countryData();
-        this.generateTimeLineTable(this.products);     
+        this.countryData(value);
+        this.generateTimeLineTable(this.products);
       });
   }
 
-  countryData(){
+  countryData(value: any) {
     this.dataService
-      .getCountryTotal(this.countryCode.toUpperCase())
+      .getCountryTotal(value)
       .pipe(takeUntil(this.destroy$))
       .subscribe((res: HttpResponse<any>) => {
         console.table(res);
@@ -75,15 +85,22 @@ export class HomeComponent implements OnInit {
     this.countryName = products.countrytimelinedata[0].info.title;
     this.testBool = true;
     let finalArray: any[] = [];
-      let data: any = this.products['timelineitems'][0];
-      Object.keys(data).forEach((key: any) => {
-        let obj = {
-          date: key,
-          ...data[key]
-        };
-        finalArray.push(obj);
-      });
+    let data: any = this.products['timelineitems'][0];
+    Object.keys(data).forEach((key: any) => {
+      let obj = {
+        date: key,
+        ...data[key]
+      };
+      finalArray.push(obj);
+    });
     this.displayedColumns = Object.keys(finalArray[0]);
     this.Source = finalArray;
+  }
+
+  countryDict(dataValue: any) {
+    for (let i = 0; i < dataValue.body.length; i++) {
+      this.countryMap.set(dataValue.body[i].name.toUpperCase(), dataValue.body[i].code);
+    }
+    console.log(this.countryMap);
   }
 }

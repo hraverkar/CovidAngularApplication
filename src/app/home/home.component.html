@@ -5,19 +5,23 @@
   <mat-card>
     <form class="example-form">
       <mat-form-field class="example-full-width">
-        <mat-label>Country Code</mat-label>
+        <mat-label>Country Name</mat-label>
         <input matInput [(ngModel)]="countryCode" [ngModelOptions]="{standalone: true}">
       </mat-form-field>
       <button class="bttn" mat-raised-button color="primary" (click)="onSearchClick()">Search</button>
       <button class="bttn" mat-raised-button color="primary" style="margin-left: 20px;"
         (click)="onCancelClick()">Cencel</button>
+      <br>
+      <label>Please enter full country name (Ex- United States)</label>
     </form>
+
   </mat-card>
 </div>
 <br>
 
 <div *ngIf="testBool" class="matcard1">
   <mat-card>
+    <mat-spinner *ngIf="countryDatas.length === 0"></mat-spinner>
     <h3 style="font-weight: bold; margin-left:50px">{{countryName}} COVID-2019 Data </h3>
     Total Case : {{ totalCase }}
     <p></p>
