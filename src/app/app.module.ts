@@ -27,13 +27,20 @@ import {
 import { GlobalComponent } from './global/global.component';
 import { HeaderComponent } from './header/header.component';
 import { NewsComponent } from './news/news.component';
+import { AleartDialogComponent } from './aleart-dialog/aleart-dialog.component';
+import {
+  MatDialogModule,
+  MatDialogRef,
+  MAT_DIALOG_DATA
+} from "@angular/material/dialog";
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     GlobalComponent,
     HeaderComponent,
-    NewsComponent
+    NewsComponent,
+    AleartDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +57,7 @@ import { NewsComponent } from './news/news.component';
     MatToolbarModule,
     MatIconModule,
     MatListModule,
+    MatDialogModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
@@ -57,8 +65,17 @@ import { NewsComponent } from './news/news.component';
     {
       provide: MAT_SNACK_BAR_DATA,
       useValue: {}
-    }
+    },
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    },
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: {}
+    },
   ],
+  entryComponents:[AleartDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
