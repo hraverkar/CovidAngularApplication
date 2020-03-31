@@ -2,6 +2,7 @@
   <app-header></app-header>
 </div>
 <div class="matcard">
+  <mat-spinner *ngIf="globalStat.length === 0"></mat-spinner>
   <mat-card>
     <h3 style="font-weight: bold; margin-left:50px">Global COVID-2019 Data </h3>
     Total Case : {{ totalCase }}
