@@ -80,4 +80,20 @@ export class DataService {
     window.alert(errorMessage);
     return throwError(errorMessage);
   }
+
+
+  getCountryDict(){
+    return this.httpClient
+    .get<any>("assets/country.json", {
+      params: new HttpParams({ }),
+      observe: "response"
+    })
+    .pipe(
+      retry(3),
+      catchError(this.handleError),
+      tap(res => {
+      })
+    );
+  }
+
 }
