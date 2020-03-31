@@ -129,7 +129,7 @@
           "builder": "@netlify-builder/deploy:deploy",
           "options": {
             "outputPath": "dist/covid",
-            "netlifyToken": "34ec0083b58a9283fa5fd57a42fb7a69500a3647cccb43cc935d907a31bde95b",
+            "netlifyToken": "2ac58f7091e313c8c1370bf00d0eb3dc5a2f81b27a053942c1775e57afbe5575",
             "siteId": "7b36529d-fb26-4f15-9016-52d5a0591f92"
           }
         }
