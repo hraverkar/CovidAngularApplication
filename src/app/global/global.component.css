@@ -1,4 +1,4 @@
-.matcard {
+/* .matcard {
   padding-right: 30px;
   width: 867.8px;
 
@@ -32,4 +32,8 @@ margin-right: 25%;
 padding-right: 16px;
 border-right-width: 0px;
 border-right-style: solid;
+} */
+
+.txtBold{
+  font-weight: bold;
 }

@@ -30,7 +30,6 @@ export class GlobalComponent implements AfterViewInit {
       .getGlobalStat()
       .pipe(takeUntil(this.destroy$))
       .subscribe((res: HttpResponse<any>) => {
-        console.table(res);
         this.globalStat = res.body;
         this.generatedTable(this.globalStat);
       });

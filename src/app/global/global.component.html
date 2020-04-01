@@ -1,25 +1,23 @@
-<div class="header">
-  <app-header></app-header>
-</div>
+
 <div class="matcard">
   <mat-spinner *ngIf="globalStat.length === 0"></mat-spinner>
   <mat-card>
-    <h3 style="font-weight: bold; margin-left:50px">Global COVID-2019 Data </h3>
-    Total Case : {{ totalCase }}
+    <h3 class="txtBold">Global COVID-2019 Data </h3>
+    <span class="txtBold">Total Case : {{ totalCase }}</span>
     <p></p>
-    Total Recovery : {{ totalRecover }}
+    <span class="txtBold"> Recovery : {{ totalRecover }}</span>
     <p></p>
-    Toatl UnResolve : {{ totalUnResolve }}
+    <span class="txtBold">Toatl UnResolve : {{ totalUnResolve }}</span>
     <p></p>
-    Total Death : {{ totalDeath }}
+    <span class="txtBold">Total Death : {{ totalDeath }}</span>
     <p></p>
-    Total New Case Today : {{ newCaseToday }}
+    <span class="txtBold">Total New Case Today : {{ newCaseToday }}</span>
     <p></p>
-    Toal New Death : {{ newDeath }}
+    <span class="txtBold">Toal New Death : {{ newDeath }}</span>
     <p></p>
-    Total Active : {{ totalActive }}
+    <span class="txtBold"> Total Active : {{ totalActive }}</span>
     <p></p>
-    Total Serious : {{ totalSerious }}
+    <span class="txtBold"> Total Serious : {{ totalSerious }}</span>
     <p></p>
   </mat-card>
 </div>
