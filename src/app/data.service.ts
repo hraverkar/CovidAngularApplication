@@ -56,20 +56,6 @@ export class DataService {
       );
   }
 
-  public getCountryNewsStat(query:any) {
-    return this.httpClient
-      .get<any>(this.REST_API_SERVER, {
-        params: new HttpParams({ fromString: "countryNewsTotal="+query }),
-        observe: "response"
-      })
-      .pipe(
-        retry(3),
-        catchError(this.handleError),
-        tap(res => {
-        })
-      );
-  }
-
   handleError(error: HttpErrorResponse) {
     let errorMessage = "Unknow error!;";
     if (error.error instanceof ErrorEvent) {
@@ -80,7 +66,6 @@ export class DataService {
     window.alert(errorMessage);
     return throwError(errorMessage);
   }
-
 
   getCountryDict(){
     return this.httpClient
@@ -94,6 +79,20 @@ export class DataService {
       tap(res => {
       })
     );
+  }
+  
+public getCountryNewsStat(query:any) {
+    return this.httpClient
+      .get<any>(this.REST_API_SERVER, {
+        params: new HttpParams({ fromString: "countryNewsTotal="+query }),
+        observe: "response"
+      })
+      .pipe(
+        retry(3),
+        catchError(this.handleError),
+        tap(res => {
+        })
+      );
   }
 
 }
