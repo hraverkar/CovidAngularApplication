@@ -26,7 +26,6 @@ import {
   MAT_SNACK_BAR_DATA
 } from "@angular/material/snack-bar";
 import { GlobalComponent } from './global/global.component';
-import { HeaderComponent } from './header/header.component';
 import { NewsComponent } from './news/news.component';
 import { AleartDialogComponent } from './aleart-dialog/aleart-dialog.component';
 import {
@@ -34,12 +33,12 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA
 } from "@angular/material/dialog";
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     GlobalComponent,
-    HeaderComponent,
     NewsComponent,
     AleartDialogComponent
   ],
@@ -60,6 +59,7 @@ import {
     MatListModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    FlexLayoutModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
