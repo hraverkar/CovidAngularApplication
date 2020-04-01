@@ -9,7 +9,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "heroku-postbuild": "ng build --prod"
-    
   },
   "private": true,
   "dependencies": {
@@ -21,6 +20,7 @@
     "@angular/compiler": "~9.1.0",
     "@angular/compiler-cli": "~9.1.0",
     "@angular/core": "~9.1.0",
+    "@angular/flex-layout": "^9.0.0-beta.29",
     "@angular/forms": "~9.1.0",
     "@angular/language-service": "~9.1.0",
     "@angular/material": "^9.2.0",
