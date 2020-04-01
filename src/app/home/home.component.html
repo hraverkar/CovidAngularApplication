@@ -1,15 +1,13 @@
-<div class="header">
-  <app-header></app-header>
-</div>
-<div class="matcard">
+
+<div>
   <mat-card>
     <form class="example-form">
       <mat-form-field class="example-full-width">
         <mat-label>Country Name</mat-label>
         <input matInput [(ngModel)]="countryCode" [ngModelOptions]="{standalone: true}">
       </mat-form-field>
-      <button class="bttn" mat-raised-button color="primary" (click)="onSearchClick()">Search</button>
-      <button class="bttn" mat-raised-button color="primary" style="margin-left: 20px;"
+      <button mat-raised-button color="primary" (click)="onSearchClick()">Search</button>
+      <button mat-raised-button color="primary"
         (click)="onCancelClick()">Cencel</button>
       <br>
       <label>Please enter full country name (Ex- United States)</label>
@@ -22,39 +20,62 @@
 <div *ngIf="testBool" class="matcard1">
   <mat-card>
     <mat-spinner *ngIf="countryDatas.length === 0"></mat-spinner>
-    <h3 style="font-weight: bold; margin-left:50px">{{countryName}} COVID-2019 Data </h3>
-    Total Case : {{ totalCase }}
+    <h3 style="font-weight: bold;">{{countryName}} COVID-2019 Data </h3>
+    <span class="txtBold"> Case : {{ totalCase }}</span>
     <p></p>
-    Total Recovery : {{ totalRecover }}
+    <span class="txtBold">Total Recovery : {{ totalRecover }}</span>
     <p></p>
-    Total UnResolve : {{ totalUnResolve }}
+    <span class="txtBold">Total UnResolve : {{ totalUnResolve }}</span>
     <p></p>
-    Total Death : {{ totalDeath }}
+    <span class="txtBold">Total Death : {{ totalDeath }}</span>
     <p></p>
-    Total New Case Today : {{ newCaseToday }}
+    <span class="txtBold">Total New Case Today : {{ newCaseToday }}</span>
     <p></p>
-    Toal New Death : {{ newDeath }}
+    <span class="txtBold">Toal New Death : {{ newDeath }}</span>
     <p></p>
-    Total Active : {{ totalActive }}
+    <span class="txtBold">Total Active : {{ totalActive }}</span>
     <p></p>
-    Total Serious : {{ totalSerious }}
+    <span class="txtBold">Total Serious : {{ totalSerious }}</span>
     <p></p>
   </mat-card>
 </div>
 
-<mat-card class="table" *ngIf="testBool">
-  <h3 style="margin-left: 35%;">Time Line : {{countryName}}</h3>
-  <div style="width:800px; height: 300px; overflow: auto;">
-    <mat-table [dataSource]="Source" class="mat-elevation-z8">
-      <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{ column | titlecase }}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let item">
-          {{ item[column] }}</mat-cell>
-      </ng-container>
-      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-    </mat-table>
-  </div>
-</mat-card>
+  <div class="example-container mat-elevation-z8" *ngIf="testBool">
+    <table mat-table [dataSource]="Source">
+  
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="new_daily_cases">
+    <th mat-header-cell *matHeaderCellDef> New Daily Cases </th>
+    <td mat-cell *matCellDef="let element"> {{element.new_daily_cases}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="new_daily_deaths">
+    <th mat-header-cell *matHeaderCellDef> New Daily Deaths </th>
+    <td mat-cell *matCellDef="let element"> {{element.new_daily_deaths}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="total_cases">
+    <th mat-header-cell *matHeaderCellDef> Total Cases </th>
+    <td mat-cell *matCellDef="let element"> {{element.total_cases}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="total_recoveries">
+    <th mat-header-cell *matHeaderCellDef> Total Recoveries </th>
+    <td mat-cell *matCellDef="let element"> {{element.total_recoveries}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="total_deaths">
+    <th mat-header-cell *matHeaderCellDef> Total Deaths </th>
+    <td mat-cell *matCellDef="let element"> {{element.total_deaths}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns;  sticky: true" ></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table> 
+</div>

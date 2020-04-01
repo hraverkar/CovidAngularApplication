@@ -36,7 +36,6 @@ export class HomeComponent implements OnInit {
       .getCountryDict()
       .pipe(takeUntil(this.destroy$))
       .subscribe((res: HttpResponse<any>) => {
-        console.table(res);
         this.countryDict(res);
       });
   }
@@ -47,7 +46,6 @@ export class HomeComponent implements OnInit {
       .getCountryTimeLineRequest(value)
       .pipe(takeUntil(this.destroy$))
       .subscribe((res: HttpResponse<any>) => {
-        console.table(res);
         this.products = res.body;
         this.countryData(value);
         this.generateTimeLineTable(this.products);
@@ -59,7 +57,6 @@ export class HomeComponent implements OnInit {
       .getCountryTotal(value)
       .pipe(takeUntil(this.destroy$))
       .subscribe((res: HttpResponse<any>) => {
-        console.table(res);
         this.countryDatas = res.body;
         this.generateCountryDataTable(this.countryDatas);
       });
@@ -93,14 +90,14 @@ export class HomeComponent implements OnInit {
       };
       finalArray.push(obj);
     });
+    finalArray.pop();
     this.displayedColumns = Object.keys(finalArray[0]);
-    this.Source = finalArray;
+    this.Source = finalArray.reverse();
   }
 
   countryDict(dataValue: any) {
     for (let i = 0; i < dataValue.body.length; i++) {
       this.countryMap.set(dataValue.body[i].name.toUpperCase(), dataValue.body[i].code);
     }
-    console.log(this.countryMap);
   }
 }

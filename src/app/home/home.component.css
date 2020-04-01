@@ -1,4 +1,4 @@
-.matcard {
+/* .matcard {
   padding-right: 30px;
   width: 867.8px;
 
@@ -50,4 +50,26 @@ margin-top: 10%;
   height: 166px;
   width: 350px;
   margin-top: 0%;
+} */
+
+.txtBold{
+  font-weight: bold;
+}
+
+table {
+  width: 100%;
+}
+.example-container {
+  height: 250px;
+  overflow: auto;
+}
+
+.mat-header-cell {
+  text-align: center;
+  justify-content:center;
+}
+
+.mat-cell {
+  text-align: center;
+  justify-content:center;
 }
